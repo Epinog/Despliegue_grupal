@@ -26,22 +26,3 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True)
     
-# <!DOCTYPE html>
-# <html>
-# <head>
-#     <title>To-Do List</title>
-# </head>
-# <body>
-#     <h1>Lista de Tareas</h1>
-#     <ul>
-#         {% for task in tasks %}
-#         <li>{{ task }}</li>
-#         {% endfor %}
-#     </ul>
-#     <form action="/add_task" method="post">
-#         <label for="task">Nueva tarea:</label>
-#         <input type="text" id="task" name="task">
-#         <button type="submit">Agregar tarea</button>
-#     </form>
-# </body>
-# </html>
