@@ -1,6 +1,0 @@
-artifact_location: file:///Users/denissetrujillotuero/Documents/MIAD/2023/Despliegue/proyecto/desplieguegrupal2/Despliegue_grupal/model/mlruns/679106514033300168
-creation_time: 1699758890584
-experiment_id: '679106514033300168'
-last_update_time: 1699758890584
-lifecycle_stage: active
-name: XGBClassifier

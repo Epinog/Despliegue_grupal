@@ -1,6 +1,0 @@
-artifact_location: file:///Users/denissetrujillotuero/Documents/MIAD/2023/Despliegue/proyecto/desplieguegrupal2/Despliegue_grupal/model/mlruns/540806234940018200
-creation_time: 1699759491507
-experiment_id: '540806234940018200'
-last_update_time: 1699759491507
-lifecycle_stage: active
-name: AdaBoostClassifier
