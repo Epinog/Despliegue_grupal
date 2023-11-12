@@ -158,9 +158,9 @@ experiment = mlflow.set_experiment("RandomForestClassifier")
 with mlflow.start_run(experiment_id=experiment.experiment_id):
     
     # Parametros
-    n_estimators=100
+    n_estimators=500
     criterion='gini'
-    max_depth=None
+    max_depth=6
     min_samples_split=2
     min_samples_leaf=1
     min_weight_fraction_leaf=0.0
@@ -250,9 +250,9 @@ with mlflow.start_run(experiment_id=experiment.experiment_id):
     
     # Parametros
     booster='gbtree'
-    eta=0.3
-    gamma=0
-    max_depth=6
+    eta=0.2
+    gamma=1
+    max_depth=8
     min_child_weight=1
     max_delta_step=0
     subsample=1
@@ -331,14 +331,14 @@ experiment = mlflow.set_experiment("AdaBoostClassifier")
 # Aquí se ejecuta MLflow sin especificar un nombre o id del experimento.
 with mlflow.start_run(experiment_id=experiment.experiment_id):
     # Parametros
-    n_estimators = 50
-    learning_rate = 0.1
+    n_estimators = 300
+    learning_rate = 0.3
     algorithm = "SAMME"
     random_state = 123
 
     ADA = AdaBoostClassifier(n_estimators = n_estimators,
                              learning_rate = learning_rate,
-                             #algorithm=algorithm,
+                             algorithm=algorithm,
                              random_state=random_state)
     ADA.fit(X_train2, y_train2)
 
