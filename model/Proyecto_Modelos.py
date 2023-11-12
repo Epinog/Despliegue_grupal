@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 from sklearn.preprocessing import StandardScaler
@@ -158,22 +157,22 @@ experiment = mlflow.set_experiment("RandomForestClassifier")
 with mlflow.start_run(experiment_id=experiment.experiment_id):
     
     # Parametros
-    n_estimators=500
+    n_estimators=850
     criterion='gini'
-    max_depth=6
-    min_samples_split=2
+    max_depth=10
+    min_samples_split=4
     min_samples_leaf=1
     min_weight_fraction_leaf=0.0
     max_features='sqrt'
     max_leaf_nodes=None
-    min_impurity_decrease=0.0
+    min_impurity_decrease=0.0001
     bootstrap=True
     oob_score=False
     n_jobs=-1
     verbose=0
     warm_start=False
     class_weight=None
-    ccp_alpha=0.0
+    ccp_alpha=0.0008
     max_samples=None
     
     # Estimación
@@ -250,11 +249,11 @@ with mlflow.start_run(experiment_id=experiment.experiment_id):
     
     # Parametros
     booster='gbtree'
-    eta=0.2
-    gamma=1
-    max_depth=8
-    min_child_weight=1
-    max_delta_step=0
+    eta=0.09
+    gamma=0
+    max_depth=6
+    min_child_weight=1.03
+    max_delta_step=0.95
     subsample=1
     sampling_method='uniform'
     reg_lambda=1
@@ -331,9 +330,9 @@ experiment = mlflow.set_experiment("AdaBoostClassifier")
 # Aquí se ejecuta MLflow sin especificar un nombre o id del experimento.
 with mlflow.start_run(experiment_id=experiment.experiment_id):
     # Parametros
-    n_estimators = 300
-    learning_rate = 0.3
-    algorithm = "SAMME"
+    n_estimators = 615
+    learning_rate = 0.1
+    algorithm = "SAMME.R"
     random_state = 123
 
     ADA = AdaBoostClassifier(n_estimators = n_estimators,
