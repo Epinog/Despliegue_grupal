@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/denissetrujillotuero/Documents/MIAD/2023/Despliegue/proyecto/desplieguegrupal2/Despliegue_grupal/model/mlruns/540806234940018200/8db786174aec4258bcd886c5083cb3b3/artifacts
+end_time: 1699759654030
+entry_point_name: ''
+experiment_id: '540806234940018200'
+lifecycle_stage: active
+run_id: 8db786174aec4258bcd886c5083cb3b3
+run_name: agreeable-mare-103
+run_uuid: 8db786174aec4258bcd886c5083cb3b3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699759654003
+status: 4
+tags: []
+user_id: denissetrujillotuero

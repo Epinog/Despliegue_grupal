@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/denissetrujillotuero/Documents/MIAD/2023/Despliegue/proyecto/desplieguegrupal2/Despliegue_grupal/model/mlruns/540806234940018200/26cef850959c4b4eba2296d27b85c8c5/artifacts
+end_time: 1699759598402
+entry_point_name: ''
+experiment_id: '540806234940018200'
+lifecycle_stage: active
+run_id: 26cef850959c4b4eba2296d27b85c8c5
+run_name: merciful-sheep-443
+run_uuid: 26cef850959c4b4eba2296d27b85c8c5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699759598382
+status: 4
+tags: []
+user_id: denissetrujillotuero

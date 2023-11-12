@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/denissetrujillotuero/Documents/MIAD/2023/Despliegue/proyecto/desplieguegrupal2/Despliegue_grupal/model/mlruns/540806234940018200/ea8865b49aa74ac796c55d5d73c06cf6/artifacts
+end_time: 1699759702549
+entry_point_name: ''
+experiment_id: '540806234940018200'
+lifecycle_stage: active
+run_id: ea8865b49aa74ac796c55d5d73c06cf6
+run_name: invincible-perch-536
+run_uuid: ea8865b49aa74ac796c55d5d73c06cf6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699759695897
+status: 3
+tags: []
+user_id: denissetrujillotuero
