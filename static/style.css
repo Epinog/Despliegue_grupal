@@ -215,6 +215,7 @@ form select{
     background-color:#ffffff;
     margin:3px 0;
     display:inline-block;
+    text-align: right;
 }
 
 form input[type="submit"]{
