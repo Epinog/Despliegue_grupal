@@ -8,7 +8,7 @@ import pandas as pd
 #función que carga los datos para las visualizaciones y genera los datos separados para cada gráfico
 def carga_datos(ruta):
     #se carga el archivo
-    data = pd.read_csv(ruta, encoding='ANSI', sep=';')
+    data = pd.read_csv(ruta,sep=';')
     #se generan los datos
     data_1 = data.Edad.value_counts().to_frame().reset_index()
     data_1 = {key:value for key,value in zip(data_1.Edad, data_1['count'])}
