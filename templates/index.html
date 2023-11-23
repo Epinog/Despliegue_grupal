@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Modelo Machine Learning</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script>
+        window.onload = function() {
+        //Conjunto de datos para la gráfica de la edad
+            var dps = [
+                    {% for key,value in data1.items() %}
+                        { x: {{key}}, y: {{value}} },
+                    {% endfor %}
+            ];
+            //Conjunto de datos para la gráfica de dispersión entre la edad y el índice de charlson
+            var dps2 = [
+                    {% for key,value in data2.items() %}
+                        { x: {{key}}, y: {{value}} },
+                    {% endfor %}
+            ];
+            
+            //Conjunto de datos para la gráfica de género
+            var data_dps3 = []
+            var total = 0
+            
+            
+            {% for key, value in data3.items() %}
+            {% if key == 0 %}
+                data_dps3.push({ y: {{value}}, label: "Mujer" , color: "#F687B8"});
+            {% else %}
+                data_dps3.push({ y: {{value}}, label: "Hombre" , color: "#1271B3"});
+            {% endif %}
+            {% endfor %}
+            
+            //Conjunto de datos para la gráfica Saturación de Oxígeno
+            var dps5 = [
+                    {% for key,value in data5.items() %}
+                        { x: {{key}}, y: {{value}} },
+                    {% endfor %}
+            ];
+            
+            var chart = new CanvasJS.Chart("grafica_1", {
+                animationEnabled: true,
+            
+                axisY:{
+            
+                gridColor: "rgba(1,77,101,.1)",
+            
+                 },
+                data: [              
+                {
+                    // Change type to "doughnut", "line", "splineArea", etc.
+                    type: "column",
+                    color: "#014D65",
+                    dataPoints: dps
+                }
+                ]
+            });
+            chart.render();
+            //gráfico dispersión edad vs indice de charlson
+            var chart2 = new CanvasJS.Chart("grafica_2", {
+            animationEnabled: true,
+            axisX:{
+                title: "Edad",
+                gridColor: "rgba(1,77,101,.1)",
+            
+            },
+            
+            axisY:{
+                title: "Índice de Charlson",
+                gridColor: "rgba(1,77,101,.1)",
+            
+            },
+            data: [              
+            {
+                // Change type to "doughnut", "line", "splineArea", etc.
+                type: "scatter",
+                
+                dataPoints: dps2
+            }
+            ]
+            });
+            chart2.render();
+            
+            
+            
+            var chart3 = new CanvasJS.Chart("grafica_3", {
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            animationEnabled: true,
+            
+            data: [{
+                type: "pie",
+                startAngle: 25,
+                toolTipContent: "<b>{label}</b>: {y}%",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 12,
+                indexLabel: "{label} - {y}%",
+                dataPoints: data_dps3
+            }]
+            });
+            chart3.render();
+            
+            //grafica 5
+            var chart5 = new CanvasJS.Chart("grafica_5", {
+            animationEnabled: true,
+            
+            axisY:{
+                
+                gridColor: "rgba(1,77,101,.1)",
+            
+            },
+            data: [              
+            {
+                // Change type to "doughnut", "line", "splineArea", etc.
+                type: "column",
+                color: "#014D65",
+                dataPoints: dps5
+            }
+            ]
+            });
+            chart5.render();
+            
+            
+        };
+        
+    </script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></style>
+</head>
+<body>
+    
+    <div class="titulo">
+        <div id="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}", width="100%">
+        </div>
+
+        <header>
+            <h1>Modelo Predictivo del Ingreso a Unidades de Cuidado Intensivo en Pacientes Hospitalizados por COVID-19</h1>
+        </header>
+    
+
+    </div>
+    <div id="container">
+        <div class="container_left">
+            <div id="formulario">
+                <h2>Indique Los Datos del Paciente</h2>
+                <p>Una vez ingresados los datos, de click en Predecir, para estimar la predicción de ingreso o no a UCI.</p>
+            
+                <form method="post" action="{{ url_for('entrega')}}">
+                    <div class="label_form">Valoración General</div>
+                    <label for="name" >Edad:</label>
+                    <input type="number" id="edad" name="edad" placeholder="Edad en años" required>
+                    <label for="name" >Días con sintomas:</label>
+                    <input type="number" id="sintomas" name="sintomas" placeholder="Numero de días " >
+                    <label for="name">FC ingreso:</label>
+                    <input type="number" id="fc_ingreso"  name="fc_ingreso" required>
+                    <label for="name">FR ingreso:</label>
+                    <input type="number" id="fr_ingreso"  name="fr_ingreso" required>
+                    <label for="name" >Disnea <br> <i style="font-size: 10px;">(1 para Si, 0 para No)</i>:</label>
+                    <select id="disnea" name="disnea">
+                        <option value="1">1</option>
+                        <option value="0">0</option>
+                    </select>
+                    <label for="name">Sat02 ingreso:</label>
+                    <input type="number" id="Sat02"  name="Sat02" required>
+                    <label for="name">Oxigeno suplementario:</label>
+                    <input type="number" id="oxigeno"  name="oxigeno" required>
+
+                    <div class="label_form">Clinimetría</div>
+                    <label for="name">Índice de Charlson:</label>
+                    <input type="number" id="charlson"   name="charlson" required>
+                    <label for="name">Score News2_calculado:</label>
+                    <input type="number" id="news2_calculado" name="news2_calculado"  required>
+                    <label for="name">CURB-65_calculado:</label>
+                    <input type="number" id="curb65"  name="curb65" required>
+
+                    <div class="label_form">Laboratorio</div>
+                    <label for="name">Hb ingreso:</label>
+                    <input type="number" id="hb_ingreso"  name="hb_ingreso"  step="0.01" required>
+                    <label for="name">Leucocitos ingreso:</label>
+                    <input type="number" id="leucocitos"  name="leucocitos" required>
+                    <label for="name">Plaquetas ingreso:</label>
+                    <input type="number" id="plaquetas"  name="plaquetas" required>
+                    <label for="name">Creatinina ingreso:</label>
+                    <input type="number" id="creatinina"  name="creatinina"  step="0.01" required>
+
+                    <input type="submit" value="Predecir">
+                </form>
+            </div>
+            <div id="prediccion">
+                <div class="subtitulo">
+                    Predicción de ingreso a UCI
+                </div>
+                <div id="valor_prediccion" name="valor_prediccion">
+                    {% if predict %}
+                    {{predict}}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="container_right">
+                <div id="describe_modelo">
+                    <h2>Información del Modelo</h2>
+                    El COVID-19 genera una gran carga de morbimortalidad, social y económica. 
+                    Debido a las posibles complicaciones derivadas de esta enfermedad, 
+                    muchos pacientes pueden requerir internación en Unidades de Cuidado Intensivo (UCI). 
+                    Estos servicios se vieron colapsados especialmente al inicio de la pandemia.<br><br>
+                    La presente herramienta permite predecir el ingreso a UCI a partir de una serie de 
+                    variables de ingreso a hospitalización en pacientes con COVID-19. Simplemente debe 
+                    colocar el valor para cada variable en los campos específicos del tablero, y obtendrá 
+                    la predicción del paciente en particular.<br><br>
+                </div>
+                <div id="graficos">
+                    <div class="titulo_grafica">Correlación entre la Edad y el Índice de Charlson</div>
+                    <div class="titulo_grafica">Distribución Género</div>
+                    <div id="grafica_2"></div>
+                    <div id="grafica_3"></div>
+                    <div class="titulo_grafica">Edad de los Pacientes del Modelo</div>
+                    <div class="titulo_grafica">Saturación de Oxígeno</div>
+                    <div id="grafica_1"></div>
+                    <div id="grafica_5"></div>
+                    
+                    
+                    
+                    
+                </div>
+        </div>
+  
+    </div>
+    <footer>
+        © 2023 Derechos Reservados
+    </footer>
+</body>
+</html>
+
+
