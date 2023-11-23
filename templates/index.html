@@ -9,6 +9,7 @@
     <title>Modelo Machine Learning</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
     <script>
         window.onload = function() {
         //Conjunto de datos para la gráfica de la edad
@@ -154,7 +155,7 @@
                 <h2>Indique Los Datos del Paciente</h2>
                 <p>Una vez ingresados los datos, de click en Predecir, para estimar la predicción de ingreso o no a UCI.</p>
             
-                <form method="post" action="{{ url_for('entrega')}}">
+                <form id="Formulario">
                     <div class="label_form">Valoración General</div>
                     <label for="name" >Edad:</label>
                     <input type="number" id="edad" name="edad" placeholder="Edad en años" required>
@@ -202,11 +203,69 @@
                 <div class="subtitulo">
                     Predicción de ingreso a UCI
                 </div>
-                <div id="valor_prediccion" name="valor_prediccion">
-                    {% if predict %}
-                    {{predict}}
-                    {% endif %}
-                </div>
+                <div id="valor_prediccion" name="valor_prediccion"></div>
+                <script>
+                    $(document).ready(function() {
+                        $('#Formulario').submit(function(event) {
+                            // Evitar que el formulario se envíe y recargue la página
+                            event.preventDefault();
+            
+                            // Obtener los valores de los campos del formulario
+                            var edad = $('#edad').val();
+                            var sintomas = $('#sintomas').val();
+                            var fc_ingreso = $('#fc_ingreso').val();
+                            var fr_ingreso = $('#fr_ingreso').val();
+                            var disnea = $('#disnea').val();
+                            var Sat02 = $('#Sat02').val();
+                            var oxigeno = $('#oxigeno').val();
+                            var charlson = $('#charlson').val();
+                            var news2_calculado = $('#news2_calculado').val();
+                            var curb65 = $('#curb65').val();
+                            var hb_ingreso = $('#hb_ingreso').val();
+                            var leucocitos = $('#leucocitos').val();
+                            var plaquetas = $('#plaquetas').val();
+                            var creatinina = $('#creatinina').val();
+                            
+            
+                            // Realizar la solicitud AJAX a la API Flask
+                            $.ajax({
+                                type: 'POST',
+                                url: '/procesar',
+                                contentType: 'application/json;charset=UTF-8',
+                                data: JSON.stringify({
+                                          
+                                    edad: edad,
+                                    sintomas: sintomas,
+                                    fc_ingreso: fc_ingreso,
+                                    fr_ingreso: fr_ingreso,
+                                    disnea: disnea,
+                                    Sat02: Sat02,
+                                    oxigeno: oxigeno,
+                                    charlson: charlson,
+                                    news2_calculado: news2_calculado,
+                                    curb65: curb65,
+                                    hb_ingreso: hb_ingreso,
+                                    leucocitos: leucocitos,
+                                    plaquetas: plaquetas,
+                                    creatinina: creatinina,
+
+                                }),
+                                success: function(data) {
+                                    // Actualizar el contenido del div con la respuesta del servidor
+                                    $('#valor_prediccion').html('' + data.result + '');
+            
+                                    // Limpiar los campos del formulario
+                                    //$('#nombre').val('');
+                                    ////$('#edad').val('');
+                                    //$('#email').val('');
+                                },
+                                error: function(error) {
+                                    console.error('Error:', error);
+                                }
+                            });
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="container_right">
