@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for,  jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from Data_visualizacion import carga_datos
 from modelo import load_model
 from modelo import make_prediction
