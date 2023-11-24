@@ -7,7 +7,7 @@ RUN adduser --disabled-password --gecos '' api-user
 WORKDIR /opt/tablero
 
 # Instalar dependencias
-ADD ./dashboard /opt/tablero/
+ADD ./tablero /opt/tablero/
 RUN pip install --upgrade pip
 RUN pip install -r /opt/tablero/requirements/requirements.txt
 
