@@ -11,8 +11,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Github all releases](https://img.shields.io/github/downloads/Naereen/StrapDown.js/total.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 
-<h3 align="center"> ¿Podemos predecir los pacientes que necesitarán atención en UCI?</h3>
-<h4 align="center"> (a partir de los datos de ingreso a hospitalización)</h4>
+<h3 align="center"> ¿Podemos predecir los pacientes que necesitarán atención en UCI a partir de los datos de ingreso a hospitalización?</h3>
 <h5 align="center"> Proyecto Final - </h5>
 
 <p align="center"> 
@@ -75,16 +74,6 @@ Proyectos similares han sido realizados en otras partes del mundo, contando con 
 
 
 <p>La elección del algoritmo final dependerá de la evaluación de los resultados en base a métricas establecidas por el equipo de trabajo.</p>
-
-<h2> Instrucciones para utilización del repositorio</h2>
-<p>Se tiene en cuento lo siguiente para ejecutar el código:</p>
-
-<p><b>1) proyecto_ans.ipynb</b></p>
-<p>Notebook en el que se ha importa la base de datos. Se realiza una exploración de datos así como la evaluación de diferentes métodos de clustering. Al ser ejecutado en su totalidad, exportará el modelo con ayuda de pickle.</p>
-
-<p><b>2) modelo.pkl</b></p>
-<p>Al ser ejecutado el previo notebook, se guardará el modelo por medio del módulo pickle. Este será usado para determinar el cluster para nuevos datos.</p>
-
 
 
 <h2>Bibliografía</h2>
