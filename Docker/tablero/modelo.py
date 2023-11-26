@@ -16,14 +16,13 @@ def load_model(model_path):
 
 #función para hacer la predicción
 def make_prediction(model, input_data):
-    # Convert input data to DMatrix format
+    # Convertir los datos a  formato DMatrix
     input_dmatrix = xgb.DMatrix(np.array(input_data).reshape(1, -1))
 
-    # Make prediction
+    # Realizar la predicción
     prediction = model.predict(input_dmatrix)
 
-    # Assuming binary classification, you might want to convert the output to a class (0 or 1)
-    # If it's a multiclass classification, you might need a different approach
+    # Convertir el desenlace en 1 o 0
     predicted_class = (prediction > 0.5).astype(int)
 
     return predicted_class
