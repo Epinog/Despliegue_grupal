@@ -12,6 +12,7 @@
 [![Github all releases](https://img.shields.io/github/downloads/Naereen/StrapDown.js/total.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 
 <h3 align="center"> ¿Podemos predecir los pacientes que necesitarán atención en UCI?</h3>
+<h4 align="center"> (a partir de los datos de ingreso a hospitalización)</h4>
 <h5 align="center"> Proyecto Final - </h5>
 
 <p align="center"> 
